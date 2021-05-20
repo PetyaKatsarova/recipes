@@ -1,7 +1,7 @@
 <?php
 
 // create connection to db
- include_once 'dbconnection.php';
+include_once 'dbconnection.php';
 ?>
 <form method="post" action="result.php">
     <label for="recipe_name">Enter the recipe name</label>
