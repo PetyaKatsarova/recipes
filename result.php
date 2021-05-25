@@ -1,6 +1,7 @@
 <?php
 include_once 'data.php';
 
+
 $option = isset($_POST['recipe_name']) ? $_POST['recipe_name'] : false;
 // make it safe!!!!!!!!!!
 //    if ($option) {
@@ -20,4 +21,4 @@ if(isset($_POST['recipe_name'])){
 
 $db->close();
 ?>
-<a href="index.php">Return to main page </a>
+ <a href="index.php">Return to main page </a>

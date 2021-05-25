@@ -31,9 +31,6 @@ if($ingredientsQuantity->num_rows > 0){
 }
 $ingredients .= "</ol>";
 
-// delete recipe by name
-$_POST['delete_recipe_name']);
-
     
 
 
