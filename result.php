@@ -1,9 +1,8 @@
 <?php
 include_once 'data.php';
 
-
-$option = isset($_POST['recipe_name']) ? $_POST['recipe_name'] : false;
-// make it safe!!!!!!!!!!
+// refactor later: SECURITY LAYER
+// $option = isset($_POST['recipe_name']) ? $_POST['recipe_name'] : false;
 //    if ($option) {
 //       echo htmlentities($_POST['recipe_name'], ENT_QUOTES, "UTF-8");
 //    } else {
