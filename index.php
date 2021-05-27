@@ -16,15 +16,7 @@ include_once 'dbconnection.php';
         <label for="recipe_name">Enter Recipe Name</label> 
         <select name="recipe_name" id="recipe_name">
             <?php
-            $stmt = $db->query("SELECT recipe_name, recipe_id FROM recipes");
-            if($stmt->num_rows > 0){
-                while($row=$stmt->fetch_assoc()){
-                    // var_dump($row['recipe_name']);
-            ?>
-                    <option value="<?php echo $row['recipe_id'] ?>" ><?php echo $row['recipe_name'] ?></option>";
-            <?php
-                }
-             }
+            include 'display_recipe_names.php';
             ?>
         </select> 
         <label for="number_pple">For: </label>
@@ -37,14 +29,7 @@ include_once 'dbconnection.php';
         <!-- <input type="text" name="delete_recipe_name" id="delete_recipe_name" /> -->
         <select name="delete_recipe_name" id="delete_recipe_name">
             <?php
-            $stmt = $db->query("SELECT recipe_name, recipe_id FROM recipes");
-            if($stmt->num_rows > 0){
-                while($row=$stmt->fetch_assoc()){
-            ?>
-                    <option value="<?php echo $row['recipe_id'] ?>" ><?php echo $row['recipe_name'] ?></option>";
-            <?php
-                }
-             }
+                include 'display_recipe_names.php';
             ?>
         </select> 
         <input type="submit" value="Delete" />
