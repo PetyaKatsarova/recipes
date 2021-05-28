@@ -10,7 +10,7 @@ include_once 'data.php';
 //      exit; 
 //    }
 
-if(isset($_POST['recipe_name'])){
+if(isset($_POST['recipe_id'])){
     echo "<h3>" . ucfirst($recipe_name) . " for " . $_POST['number_pple'] . "</h3>";
     echo $ingredients;
     echo "<p>" . ucfirst($instructions) . "</p>";

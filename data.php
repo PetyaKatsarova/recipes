@@ -1,40 +1,57 @@
 <?php
 include_once 'dbconnection.php';
 
-$r_name = '';
-if(isset($_POST['recipe_name'])){
-    $r_name = $_POST['recipe_name'];
-}
+// $option = isset($_POST['delete_recipe_name']) ? $_POST['delete_recipe_name'] : false;
 
- $recipe_id = null;
- $stmt = $db->query("SELECT recipe_id FROM recipes WHERE recipe_name = '". $r_name ."'");
+// if($option){
+//     $id = $_POST['delete_recipe_name'];
+//     $sql = "DELETE from recipes WHERE recipe_id = '". $id ."'";
+//     if ($db->query($sql) === TRUE) {
+//         echo "Record deleted successfully";
+//     } else {
+//         echo "Error deleting record: " . $db->error;
+//     }
+//     $db->close();
+// } 
+
+$recipe_id = isset($_POST['recipe_id']) ? $_POST['recipe_id'] : false;
+
+ $recipe_name='';
+ $stmt = $db->query("SELECT recipe_name FROM recipes WHERE recipe_id = '". $recipe_id ."'");
  while($row=$stmt->fetch_assoc()){
-      $recipe_id = $row['recipe_id'];
+      $recipe_name = $row['recipe_name'];
  }
 
-$ingredientsQuantity = $db->query("SELECT quantity.ingredient_quantity, quantity.ingredient_measurement, ingredients.ingredient_name, recipes.recipe_name, recipes.instructions
-FROM quantity JOIN ingredients JOIN recipes ON quantity.ingredient_id = ingredients.ingredient_id AND 
-quantity.recipe_id = ingredients.recipe_id AND 
+$ingredientsQuantity = $db->query("SELECT 
+-- quantity.ingredient_quantity, quantity.ingredient_measurement, 
+ingredients.ingredient_name, recipes.recipe_name, recipes.instructions
+-- FROM quantity JOIN
+ FROM recipes JOIN ingredients ON 
+--  quantity.ingredient_id = ingredients.ingredient_id AND 
+-- quantity.recipe_id = ingredients.recipe_id AND 
 recipes.recipe_id = ingredients.recipe_id WHERE recipes.recipe_id = '". $recipe_id ."'");
 
-$recipe_name = "";
+// $recipe_name = "";
 $ingredients = "<ul>";
 $instructions = "";
+echo $recipe_id;
+
 
 if($ingredientsQuantity->num_rows > 0){
     while($row=$ingredientsQuantity->fetch_assoc()){
         // $recipe_n = strtolower($_POST['recipe_name']);
-        if(isset($_POST['recipe_name']) && (strtolower($_POST['recipe_name'] === $row['recipe_name']))){
-            $recipe_name = $_POST['recipe_name'];
-            $instructions = $row['instructions']; 
-            $quantity = intval($_POST['number_pple']) * ($row['ingredient_quantity']);
-            $ingredients .= "<li>" . $quantity . " " . $row['ingredient_measurement'] ." " . $row['ingredient_name'] . "</li>";       
+        if(isset($_POST['recipe_id']) && (strtolower($recipe_name) === strtolower($row['recipe_name']))){
+            // $recipe_name = $_POST['recipe_name'];
+            // $instructions = $row['instructions']; 
+            // $quantity = intval($_POST['number_pple']) * ($row['ingredient_quantity']);
+            echo $row['recipe_name'];
+            $ingredients .= "<li>" . " Some " . $row['ingredient_name'] . "</li>";       
          }else{
             continue;
         }
     }
 }else{
-    echo 'some error';
+    echo 'error in retrieving ingredientsQuantity query';
 }
 $ingredients .= "</ul>";
 

@@ -13,8 +13,8 @@ include_once 'dbconnection.php';
     </ul>
 
     <form method="post" action="result.php" name="selected_recipe"> 
-        <label for="recipe_name">Enter Recipe Name</label> 
-        <select name="recipe_name" id="recipe_name">
+        <label for="recipe_id">Enter Recipe Name</label> 
+        <select name="recipe_id" id="recipe_id">
             <?php
             include 'display_recipe_names.php';
             ?>
