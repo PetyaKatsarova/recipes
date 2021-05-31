@@ -24,6 +24,18 @@ include_once 'dbconnection.php';
         <input type="submit" name="submit" value="To the shopping list and instructions" />
     </form> 
  
+    <script>
+        function ConfirmDelete(){
+            document.getElementById('delete_recipe_name').addEventListener('click', ()=>{
+                var x = confirm("Are you sure you want to delete?");
+                if (x)
+                    return true;
+                else
+                    return false;
+                });
+        }
+    </script>
+
     <form method="post" name="delete_recipe" action="">
         <label for="delete_recipe_name">Recipe</label>
         <!-- <input type="text" name="delete_recipe_name" id="delete_recipe_name" /> -->
@@ -31,8 +43,9 @@ include_once 'dbconnection.php';
             <?php
                 include 'display_recipe_names.php';
             ?>
+            <!-- <button Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value="1"><img src="images/action_delete.png" alt="Delete"></button> -->
         </select> 
-        <input type="submit" value="Delete" />
+        <input type="submit" value="Delete" Onclick="return ConfirmDelete();" />
     </form>  
     <?php 
         include_once 'delete_recipe_from_db.php';

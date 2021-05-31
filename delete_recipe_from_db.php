@@ -1,3 +1,9 @@
+<script>
+  document.getElementById('delete_recipe_name').addEventListener('click', ()=>{
+      ('Are you sure you want to delete this recipe?');
+  });
+</script>
+
 <?php
 include_once 'dbconnection.php';
 
@@ -11,7 +17,7 @@ if($option){
     } else {
         echo "Error deleting record: " . $db->error;
     }
-    $db->close();
+    // $db->close();
 } 
 
 // for later: refactor to add security layers: 
