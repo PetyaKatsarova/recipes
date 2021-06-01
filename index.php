@@ -23,7 +23,8 @@ include_once 'dbconnection.php';
         <input type="number" name="number_pple" value=2 />
         <input type="submit" name="submit" value="To the shopping list and instructions" />
     </form> 
- 
+    <?php
+    var_dump($to_sort_recipes);?>
     <script>
         function ConfirmDelete(){
             document.getElementById('delete_recipe_name').addEventListener('click', ()=>{

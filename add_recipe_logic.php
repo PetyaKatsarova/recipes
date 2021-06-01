@@ -1,22 +1,14 @@
 
 
 <?php
-// populate  ingredients db 
 include_once 'dbconnection.php';
 
 $ingredients = $db->query("SELECT ingredient_name, ingredient_id FROM ingredients");
 $ingredients_array = [];
 while($row=$ingredients->fetch_assoc()){
-    array_push($ingredients_array, $row['ingredient_name']);
+    // array_push($ingredients_array, $row['ingredient_name']);
+    $ingredients_array[$row['ingredient_id']] = $row['ingredient_name'];
 }
-//temporary fix: need to delete dublicates in table ingredients
-// $no_dublicated_ingredients = [];
-// foreach($ingredients_array as $ing){
-//     if (!in_array( $ing,$no_dublicated_ingredients)){
-//         array_push($no_dublicated_ingredients, $ing);
-//     }
-// }
-
 
 // add ingredient
 
@@ -52,11 +44,48 @@ if(isset($_POST['delete_ingredient'])){
 
 // $db->close();
 
-// add to the db new recipe
-if(isset($_POST['add_recipe'])  && isset($_POST['instructions'])){
-    echo $_POST['add_recipe'] . "</br>";
-    echo 'kku';
+//add new recipe name and instructions to recipes
+// make sure dont add existing recipe name
+
+$st = $db->query("SELECT recipe_name, recipe_id FROM recipes");
+$recipe_names = [];
+$isDub = false;
+while($row=$st->fetch_assoc()){
+    $recipe_names[$row['recipe_name']] = $row['recipe_id'];
 }
+
+if(isset($_POST['submit_add_new_recipe'])){
+    $name = strtolower($_POST['add_recipe']);
+    $instructions= $_POST['instructions'];
+    $ingredients = [];
+
+
+    // checking if the new recipe is in the db:
+    foreach($recipe_names as $rec=>$rec_id){
+        if($rec === $name){
+            echo ucfirst($rec) . " is already in the database";
+            $isDub = true;
+        }
+    }
+    if(empty($name) || empty($instructions)){
+        echo 'Please enter recipe name and/or instructions';
+    }else{
+        if($isDub === false){
+            $q = "INSERT INTO recipes (recipe_name, instructions)
+            VALUES('". $name ."', '". $instructions ."')";
+            if ($db->query($q) === TRUE) {
+                echo "New recipe created successfully";
+            } else {
+                echo "Error: " . $q . "<br>" . $db->error;
+            }
+
+            // insert into link ingredient_id and 
+            //recipe_id, message that was done
+            $insert_recipe_id = "INSERT INTO link (recipe_id, ingredient_id VALUES()";
+        }            
+    } 
+}
+
 
 
 

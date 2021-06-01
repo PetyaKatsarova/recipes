@@ -1,19 +1,6 @@
 <?php
 include_once 'dbconnection.php';
 
-// $option = isset($_POST['delete_recipe_name']) ? $_POST['delete_recipe_name'] : false;
-
-// if($option){
-//     $id = $_POST['delete_recipe_name'];
-//     $sql = "DELETE from recipes WHERE recipe_id = '". $id ."'";
-//     if ($db->query($sql) === TRUE) {
-//         echo "Record deleted successfully";
-//     } else {
-//         echo "Error deleting record: " . $db->error;
-//     }
-//     $db->close();
-// } 
-
 $recipe_id = isset($_POST['recipe_id']) ? $_POST['recipe_id'] : false;
 
  $recipe_name='';

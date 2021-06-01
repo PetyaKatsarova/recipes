@@ -28,7 +28,7 @@
 </script>
 
     </ul>
-    <textarea name="directions" name="instructions" placeholder="Add instructions"></textarea>
+    <textarea name="instructions" name="instructions" placeholder="Add instructions"></textarea>
     <input type="submit" value="Add the Recipe" name="submit_add_new_recipe" />
 </form>
 
@@ -62,9 +62,8 @@
         </select> 
         <input type="submit" name="submitted_delete_ingredient" />
 </form>
-<?php 
-//add new recipe name and instructions to recipes
-$statement = $db->query("INSERT INTO recipes('recipe_name', 'instructions')");
+<a href="index.php">Return to main menu</a>
+
 
 
 
