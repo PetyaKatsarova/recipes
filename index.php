@@ -3,7 +3,7 @@ include_once 'dbconnection.php';
 ?>
 
 <head>
-   <link href="index.css" type="text/css" rel="stylesheet" />
+   <link href="styles.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
     <h3>Shopping List</h3>
@@ -12,7 +12,7 @@ include_once 'dbconnection.php';
     <li>For now have 3 tables: recipes, ingredients, quantity</li>
     </ul>
 
-    <form method="post" action="result.php" name="selected_recipe"> 
+    <form method="post" action="work_in_progress.php" name="selected_recipe"> 
         <label for="recipe_id">Enter Recipe Name</label> 
         <select name="recipe_id" id="recipe_id">
             <?php
@@ -23,8 +23,7 @@ include_once 'dbconnection.php';
         <input type="number" name="number_pple" value=2 />
         <input type="submit" name="submit" value="To the shopping list and instructions" />
     </form> 
-    <?php
-    var_dump($to_sort_recipes);?>
+    
     <script>
         function ConfirmDelete(){
             document.getElementById('delete_recipe_name').addEventListener('click', ()=>{
